@@ -1,15 +1,19 @@
 from datetime import date
+from gui import confirm_non_workday
 
 def date_info():   
 
-    curDate = date.today()
-    weekDay = curDate.weekday()
-    
-    if weekDay < 5:
-        workDay = 1
-    else:
-        workDay = 0
+    cur_date = date.today()
+    weekday = cur_date.weekday()
+    workday =  weekday < 5
 
-    return workDay
+    if not workday:
+        if not confirm_non_workday():
+            return None
+    return cur_date
+
+
+    
+        
 
 

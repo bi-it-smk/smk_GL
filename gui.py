@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
 
 def main_window():
 
@@ -29,3 +30,11 @@ def main_window():
     root.mainloop() # start event loop, keep window responsive
     present = varAnw.get()
     return present
+
+def confirm_non_workday():
+    answer = messagebox.askokcancel(
+        "Warnung",
+        "Heute ist kein normaler Arbeitstag.\n Möchten Sie trotzdem fortfahren?"
+    )
+    return answer
+        
