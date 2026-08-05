@@ -219,5 +219,4 @@ __marimo__/
 
 # db viewing
 
-.db-shm
-.db-wal
+attendance.db-shm'
