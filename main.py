@@ -6,22 +6,16 @@ from datetime import *
 connect_db()
 create_table()
 
-cur_date = date_info()
-print(cur_date)
+cur_date, workday = date_info()
+print(cur_date, workday)
 if cur_date is None:
     exit()
 
 presence = main_window()
 print(presence)
 
-
-insert_values(cur_date, presence)
-
-# validate
-
-# save
-
-# update statistics
+update_date(cur_date)
+insert_values(cur_date, workday, presence)
 
 # update excel
 
