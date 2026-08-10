@@ -37,4 +37,8 @@ def confirm_non_workday():
         "Heute ist kein normaler Arbeitstag.\n Möchten Sie trotzdem fortfahren?"
     )
     return answer
-        
+
+def fatal_error():
+        messagebox.showerror(
+             "A fatal error occured"
+        )

@@ -1,5 +1,4 @@
 import sqlite3
-from datetime import datetime
 from datetime import timedelta
 from datetime import date
 
@@ -26,13 +25,18 @@ def create_table():
         con.commit()
 
 def insert_values(cur_date, workday, presence):
-    with connect_db() as con:
-        cur = con.cursor()
-        cur.execute('''
-        INSERT INTO attendance (date, workday, present) VALUES
-        (?, ?, ?)
-        ''', (cur_date, workday, presence)) 
-        con.commit()
+    try: 
+        with connect_db() as con:
+            cur = con.cursor()
+            cur.execute('''
+            INSERT INTO attendance (date, workday, present) VALUES
+            (?, ?, ?)
+            ''', (cur_date, workday, presence)) 
+            con.commit()
+            return True
+    except:
+        print(f"Error while adding data")
+        return False
 
 def fill_missing_dates(last_date, cur_date):
     with connect_db() as con:
@@ -41,17 +45,18 @@ def fill_missing_dates(last_date, cur_date):
             last_date += timedelta(days=1)
             weekday = last_date.weekday()
             workday = weekday < 5
-            presence = 3
             if workday:
                 workday = 1
+                presence = 0
             else:
                 workday = 0
+                presence = 3
             cur.execute('''
                 INSERT INTO attendance (date, workday, present) VALUES
                 (?, ?, ?)
             ''', (last_date, workday, presence))
 
-def update_date(cur_date):
+def update_dates(cur_date):
     with connect_db() as con:
         cur = con.cursor()
         cur.execute('''

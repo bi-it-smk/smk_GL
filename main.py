@@ -2,6 +2,8 @@ from gui import *
 from date_info import *
 from database import *
 from datetime import *
+from stats import *
+from export import *
 
 connect_db()
 create_table()
@@ -14,8 +16,10 @@ if cur_date is None:
 presence = main_window()
 print(presence)
 
-update_date(cur_date)
+update_dates(cur_date)
 insert_values(cur_date, workday, presence)
+
+export_attendance()
 
 # update excel
 
