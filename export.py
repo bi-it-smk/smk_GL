@@ -20,11 +20,6 @@ def export_attendance():
     gen_average = att_avg(df)
     monthly = monthly_averages(df)
 
-    print ("average: ", gen_average)
-    print ("year: ", year_average)
-    print ("month: ", month_average)
-    
-
     df.to_excel(
         "data/attendance.xlsx",
         index=False
@@ -109,4 +104,3 @@ def export_attendance():
     stats.add_chart(graph, "G7")
 
     wb.save("data/attendance.xlsx")
-

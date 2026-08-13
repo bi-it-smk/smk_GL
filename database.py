@@ -43,14 +43,13 @@ def fill_missing_dates(last_date, cur_date):
         cur = con.cursor()
         while last_date < cur_date - timedelta(days=1):
             last_date += timedelta(days=1)
+            presence = 0
             weekday = last_date.weekday()
             workday = weekday < 5
             if workday:
                 workday = 1
-                presence = 0
             else:
                 workday = 0
-                presence = 3
             cur.execute('''
                 INSERT INTO attendance (date, workday, present) VALUES
                 (?, ?, ?)

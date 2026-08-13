@@ -2,8 +2,8 @@ from datetime import date
 from gui import confirm_non_workday
 
 def date_info():   
-    #cur_date = date.today()
-    cur_date = date(2027,1,4)
+    cur_date = date.today()
+    # cur_date = date(2026,11,2)
     weekday = cur_date.weekday()
     workday =  weekday < 5
 
